@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Nicolás de los Arroyos - Ciudad de Fe y Cultura</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e40af;
+            --secondary-color: #3b82f6;
+            --accent-color: #60a5fa;
+            --text-color: #1e3a8a;
+            --background-color: #e0f2fe;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bfdbfe 100%);
+            color: var(--text-color);
+        }
+        
+        .hero {
+            background-image: url('https://www.clarin.com/2021/08/05/Yza3mrD7g_1200x0__1.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 89vh;
+        }
+        
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+        
+        .section-button {
+            transition: all 0.3s ease;
+        }
+        
+        .section-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .slider {
+            display: none;
+        }
+        
+        .slider.active {
+            display: block;
+        }
+        
+        .content-card {
+            transition: transform 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .content-image {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .content-text {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="bg-blue-900 text-white fixed w-full z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="municipalidad_sannicolas_logo-removebg-preview.png" alt="Logo de San Nicolás" class="h-10 w-10 mr-3">
+                <a href="#" class="text-xl font-bold">San Nicolás de los Arroyos</a>
+
+            <select id="language-select" class="bg-blue-800 text-white px-2 py-1 rounded">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+            </select>
+        </nav>
+    </header>
+
+    <main class="flex-grow pt-16">
+        <section class="hero flex items-center justify-center">
+            <div class="hero-overlay absolute inset-0 flex items-center justify-center">
+                <div class="text-center text-white">
+                    <h1 class="text-5xl font-bold mb-4" id="hero-title">San Nicolás de los Arroyos</h1>
+                    <p class="text-xl" id="hero-subtitle">Descubre el encanto y el rico patrimonio de esta joya argentina</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <button class="section-button bg-white p-6 rounded-lg shadow-md text-center" onclick="showSlider('historia')">
+                    <i class="fas fa-history text-4xl mb-4 text-blue-600"></i>
+                    <h2 class="text-xl font-semibold" id="btn-historia">Historia</h2>
+                </button>
+                <button class="section-button bg-white p-6 rounded-lg shadow-md text-center" onclick="showSlider('lugares')">
+                    <i class="fas fa-map-marker-alt text-4xl mb-4 text-blue-600"></i>
+                    <h2 class="text-xl font-semibold" id="btn-lugares">Lugares Populares</h2>
+                </button>
+                <button class="section-button bg-white p-6 rounded-lg shadow-md text-center" onclick="showSlider('eventos')">
+                    <i class="fas fa-calendar-alt text-4xl mb-4 text-blue-600"></i>
+                    <h2 class="text-xl font-semibold" id="btn-eventos">Eventos y Festivales</h2>
+                </button>
+                <button class="section-button bg-white p-6 rounded-lg shadow-md text-center" onclick="showSlider('mapa')">
+                    <i class="fas fa-map text-4xl mb-4 text-blue-600"></i>
+                    <h2 class="text-xl font-semibold" id="btn-mapa">Mapa</h2>
+                </button>
+            </div>
+
+            <div id="slider-container">
+                <div id="historia" class="slider">
+                    <h2 class="text-3xl font-bold mb-6 text-center" id="historia-title">Historia</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="content-card bg-white rounded-lg shadow-md overflow-hidden">
+                            <img src="https://metafm.com.ar/wp-content/uploads/2024/04/v.jpg" alt="Catedral de San Nicolás de Bari" class="content-image w-full">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2" id="historia-card1-title">Fundación y Desarrollo</h3>
+                                <div class="content-text" id="historia-card1-content">
+                                    <p>San Nicolás de los Arroyos fue fundada el 14 de abril de 1748 por Rafael de Aguiar. Originalmente un pequeño pueblo rural, la ciudad experimentó un crecimiento significativo en el siglo XIX debido a su ubicación estratégica a orillas del río Paraná. El puerto de San Nicolás se convirtió en un importante centro de comercio, facilitando el intercambio de productos agrícolas y ganaderos.</p>
+                                    <p>En 1852, la ciudad fue escenario de un evento histórico crucial: la firma del Acuerdo de San Nicolás, que sentó las bases para la organización nacional de Argentina y la posterior sanción de la Constitución de 1853.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-card bg-white rounded-lg shadow-md overflow-hidden">
+                            <img src="https://aica.org/imagenes/noticias/san-nicolas-celebra-a-su-virgen-patrona-8nHE.jpg" alt="Virgen del Rosario de San Nicolás" class="content-image w-full">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2" id="historia-card2-title">Aparición Mariana</h3>
+                                <div class="content-text" id="historia-card2-content">
+                                    <p>El 25 de septiembre de 1983, la ciudad experimentó un evento que la transformaría para siempre. Gladys Quiroga de Motta, una mujer local, reportó haber tenido una visión de la Virgen María. Según su testimonio, la Virgen le pidió que buscara una imagen suya que había sido bendecida por el Papa León XIII.</p>
+                                    <p>Esta imagen fue encontrada en la catedral de la ciudad, cubierta de polvo en el campanario. Desde entonces, San Nicolás se ha convertido en un importante centro de peregrinación, atrayendo a millones de fieles cada año. El Santuario de Nuestra Señora del Rosario de San Nicolás fue construido en el lugar de las apariciones y se ha convertido en un símbolo de la fe y la devoción en Argentina.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-card bg-white rounded-lg shadow-md overflow-hidden">
+                            <img src="https://media.infocielo.com/p/8a5d73aa4b0c7c0255acab4d4b17e7c9/adjuntos/299/imagenes/001/847/0001847067/540x360/smart/imagepng.png" alt="Planta Siderúrgica de San Nicolás" class="content-image w-full">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2" id="historia-card3-title">Desarrollo Industrial</h3>
+                                <div class="content-text" id="historia-card3-content">
+                                    <p>A mediados del siglo XX, San Nicolás experimentó una transformación económica significativa con la instalación de la planta siderúrgica SOMISA (Sociedad Mixta Siderurgia Argentina) en 1947. Esta planta, ahora operada por Ternium Argentina, marcó el inicio de la era industrial de la ciudad.</p>
+                                    <p>La industria siderúrgica no solo impulsó el crecimiento económico de San Nicolás, sino que también atrajo a trabajadores de todo el país, lo que llevó a un rápido crecimiento demográfico y urbano. La ciudad se convirtió en un importante centro industrial, contribuyendo significativamente a la producción de acero de Argentina.</p>
+                                    <p>Hoy en día, San Nicolás continúa siendo un importante centro industrial y portuario, combinando su herencia histórica y religiosa con su papel en la economía moderna de Argentina.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="lugares" class="slider">
+                    <h2 class="text-3xl font-bold mb-6 text-center" id="lugares-title">Lugares Populares</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="content-card bg-white rounded-lg shadow-md overflow-hidden">
+                            <img src="https://www.sannicolasciudad.gob.ar/system/image_gallery_items/images/000/000/539/medium/5.png" alt="Santuario de Nuestra Señora del Rosario" class="content-image w-full">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2" id="lugares-card1-title">Santuario de Nuestra Señora del Rosario</h3>
+                                <div class="content-text" id="lugares-card1-content">
+                                    <p>El Santuario de Nuestra Señora del Rosario de San Nicolás es el corazón espiritual de la ciudad. Construido en el lugar de las apariciones marianas de 1983, este imponente edificio atrae a millones de peregrinos cada año.</p>
+                                    <p>El santuario, inaugurado en 1989, se eleva a 52 metros de altura y puede albergar hasta 10,000 fieles. Su arquitectura moderna incorpora elementos simbólicos, como las 15 puertas que representan los 15 misterios del rosario.</p>
+                                    <p>En el interior, los visitantes pueden ver la imagen de la Virgen del Rosario, encontrada en la catedral local tras las apariciones. El santuario también cuenta con un museo que exhibe exvotos y otros objetos relacionados con los milagros atribuidos a la Virgen.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-card bg-white rounded-lg shadow-md overflow-hidden">
+                            <img src="https://sannicolasciudad.gob.ar/system/articles/main_images/000/000/454/medium/PARQUE_AGUIAR-5.jpeg?1600633487" alt="Parque Rafael de Aguiar" class="content-image w-full">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2" id="lugares-card2-title">Parque Rafael de Aguiar</h3>
+                                <div class="content-text" id="lugares-card2-content">
+                                    <p>El Parque Rafael de Aguiar, nombrado en honor al fundador de la ciudad, es un hermoso espacio verde ubicado a orillas del río Paraná. Con una extensión de más de 70 hectáreas, es el pulmón verde de San Nicolás y un lugar favorito para el esparcimiento de los locales y visitantes.</p>
+                                    
+                                    <p>El parque cuenta con amplias áreas verdes, senderos para caminatas y ciclismo, áreas de picnic y parrillas. También alberga instalaciones deportivas, incluyendo canchas de fútbol, tenis y básquetbol.</p>
+                                    <p>Una de las características más destacadas del parque es su costanera, que ofrece impresionantes vistas del río Paraná. Los visitantes pueden disfrutar de paseos en bote, pesca recreativa o simplemente relajarse viendo el atardecer sobre el río.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-card bg-white rounded-lg shadow-md overflow-hidden">
+                            <img src="https://www.noticiasd.com/wp-content/uploads/2023/04/TEATRO-SAN-NICOLAS-1.jpeg" alt="Teatro Municipal Rafael de Aguiar" class="content-image w-full">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2" id="lugares-card3-title">Teatro Municipal Rafael de Aguiar</h3>
+                                <div class="content-text" id="lugares-card3-content">
+                                    <p>El Teatro Municipal Rafael de Aguiar es un ícono cultural de San Nicolás. Inaugurado en 1908, este hermoso edificio de estilo italiano es un testimonio de la rica historia cultural de la ciudad.</p>
+                                    <p>Con capacidad para 500 espectadores, el teatro ha sido cuidadosamente restaurado para preservar su esplendor original. Sus características más notables incluyen su elegante fachada, los frescos del techo y los palcos finamente decorados.</p>
+                                    <p>El teatro alberga una variedad de eventos a lo largo del año, incluyendo obras de teatro, conciertos, danza y otros espectáculos culturales. También es sede del Festival Internacional de Teatro de San Nicolás, que atrae a compañías de teatro de todo el mundo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="eventos" class="slider">
+                    <h2 class="text-3xl font-bold mb-6 text-center" id="eventos-title">Eventos y Festivales</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="content-card bg-white rounded-lg shadow-md overflow-hidden">
+                            <img src="https://aica.org/imagenes/noticias/2020/rosario-san-nicolas-mons-martin-recuerda-que-maria-protege-siempre-yORI.jpg" alt="Peregrinación anual al Santuario" class="content-image w-full">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2" id="eventos-card1-title">Peregrinación Anual</h3>
+                                <div class="content-text" id="eventos-card1-content">
+                                    <p>La Peregrinación Anual al Santuario de Nuestra Señora del Rosario es el evento más importante del calendario religioso de San Nicolás. Cada 25 de septiembre, fecha que conmemora la primera aparición de la Virgen en 1983, la ciudad recibe a cientos de miles de peregrinos de todo el país y el extranjero.</p>
+                                    <p>La peregrinación comienza en la madrugada, con fieles caminando desde diversos puntos de la ciudad y alrededores hacia el Santuario. A lo largo del día, se celebran misas continuas y se realizan procesiones con la imagen de la Virgen.</p>
+                                    <p>El evento culmina con una misa multitudinaria en la explanada del Santuario, que suele ser presidida por importantes figuras de la Iglesia Católica. La peregrinación no solo es un acto de fe, sino también una muestra impresionante de devoción popular y un importante evento turístico para la ciudad.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-card bg-white rounded-lg shadow-md overflow-hidden">
+                            <img src="https://quepasaensannicolas.com/wp-content/uploads/2023/08/teatro-san-nicolas.jpg" alt="Festival Cultural de San Nicolás" class="content-image w-full">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2" id="eventos-card2-title">Festival Internacional de Teatro</h3>
+                                <div class="content-text" id="eventos-card2-content">
+                                    <p>El Festival Internacional de Teatro de San Nicolás es uno de los eventos culturales más destacados de la ciudad. Celebrado anualmente desde 1985, este festival transforma a San Nicolás en un epicentro de las artes escénicas durante una semana.</p>
+                                    <p>El festival atrae a compañías de teatro de Argentina y de todo el mundo, ofreciendo una amplia variedad de obras que van desde el teatro clásico hasta producciones experimentales contemporáneas. Las presentaciones se realizan en diversos espacios de la ciudad, incluyendo el Teatro Municipal Rafael de Aguiar, plazas públicas y centros culturales.</p>
+                                    <p>Además de las obras de teatro, el festival incluye talleres, conferencias y encuentros con artistas, brindando una oportunidad única para el intercambio cultural y el desarrollo artístico. Este evento no solo enriquece la vida cultural de San Nicolás, sino que también atrae a numerosos turistas, impulsando la economía local.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-card bg-white rounded-lg shadow-md overflow-hidden">
+                            <img src="https://soloporgusto.com/wp-content/uploads/2022/02/rico-san-nicolas-ok.jpg" alt="Feria Gastronómica del Paraná" class="content-image w-full">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2" id="eventos-card3-title">Feria Gastronómica del Paraná</h3>
+                                <div class="content-text" id="eventos-card3-content">
+                                    <p>La Feria Gastronómica del Paraná es un evento anual que celebra la rica tradición culinaria de San Nicolás y la región del Paraná. Generalmente realizada en el Parque Rafael de Aguiar, esta feria atrae a miles de visitantes con su deliciosa oferta de platos locales y regionales.</p>
+                                    <p>Los asistentes pueden degustar una amplia variedad de especialidades, incluyendo pescados de río, carnes asadas, empanadas, y dulces típicos. La feria también presenta stands de productores locales que ofrecen quesos, embutidos, vinos y cervezas artesanales.</p>
+                                    <p>Además de la comida, el evento incluye demostraciones de cocina en vivo, concursos culinarios y presentaciones musicales. La Feria Gastronómica del Paraná no solo es una celebración de los sabores locales, sino también una oportunidad para promover la cultura y los productos de la región.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="mapa" class="slider">
+                    <h2 class="text-3xl font-bold mb-6 text-center" id="mapa-title">Mapa de San Nicolás</h2>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53321.90014613392!2d-60.25976535136719!3d-33.33333799999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b767d8ad21e8c7%3A0x4b73d5cf969b21f9!2sSan%20Nicol%C3%A1s%20de%20los%20Arroyos%2C%20Buenos%20Aires%20Province!5e0!3m2!1sen!2sar!4v1699048429705!5m2!1sen!2sar" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    
+    </main>
+
+    <footer class="bg-blue-900 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 Municipalidad de San Nicolás de los Arroyos</p>
+            <p class="mt-2">EEST2 San Nicolas 6to 2da</p>
+            <p class="mt-2" id="footer-credits">Creado por: Duportal Roman, Quiroga Joel, Campelli Joaquin, Benavidez Jeremias, Tapia Rocio, Organ Sebastian</p>
+        </div>
+    </footer>
+
+    <script>
+        function showSlider(sliderId) {
+            const sliders = document.querySelectorAll('.slider');
+            sliders.forEach(slider => {
+                slider.classList.remove('active');
+            });
+            document.getElementById(sliderId).classList.add('active');
+        }
+
+        const languageSelect = document.getElementById('language-select');
+        languageSelect.addEventListener('change', function() {
+            const lang = this.value;
+            const translations = {
+                es: {
+                    'hero-title': 'San Nicolás de los Arroyos',
+                    'hero-subtitle': 'Descubre el encanto y el rico patrimonio de esta joya argentina',
+                    'btn-historia': 'Historia',
+                    'btn-lugares': 'Lugares Populares',
+                    'btn-eventos': 'Eventos y Festivales',
+                    'btn-mapa': 'Mapa',
+                    'historia-title': 'Historia',
+                    'historia-card1-title': 'Fundación y Desarrollo',
+                    'historia-card1-content': '<p>San Nicolás de los Arroyos fue fundada el 14 de abril de 1748 por Rafael de Aguiar. Originalmente un pequeño pueblo rural, la ciudad experimentó un crecimiento significativo en el siglo XIX debido a su ubicación estratégica a orillas del río Paraná. El puerto de San Nicolás se convirtió en un importante centro de comercio, facilitando el intercambio de productos agrícolas y ganaderos.</p><p>En 1852, la ciudad fue escenario de un evento histórico crucial: la firma del Acuerdo de San Nicolás, que sentó las bases para la organización nacional de Argentina y la posterior sanción de la Constitución de 1853.</p>',
+                    'historia-card2-title': 'Aparición Mariana',
+                    'historia-card2-content': '<p>El 25 de septiembre de 1983, la ciudad experimentó un evento que la transformaría para siempre. Gladys Quiroga de Motta, una mujer local, reportó haber tenido una visión de la Virgen María. Según su testimonio, la Virgen le pidió que buscara una imagen suya que había sido bendecida por el Papa León XIII.</p><p>Esta imagen fue encontrada en la catedral de la ciudad, cubierta de polvo en el campanario. Desde entonces, San Nicolás se ha convertido en un importante centro de peregrinación, atrayendo a millones de fieles cada año. El Santuario de Nuestra Señora del Rosario de San Nicolás fue construido en el lugar de las apariciones y se ha convertido en un símbolo de la fe y la devoción en Argentina.</p>',
+                    'historia-card3-title': 'Desarrollo Industrial',
+                    'historia-card3-content': '<p>A mediados del siglo XX, San Nicolás experimentó una transformación económica significativa con la instalación de la planta siderúrgica SOMISA (Sociedad Mixta Siderurgia Argentina) en 1947. Esta planta, ahora operada por Ternium Argentina, marcó el inicio de la era industrial de la ciudad.</p><p>La industria siderúrgica no solo impulsó el crecimiento económico de San Nicolás, sino que también atrajo a trabajadores de todo el país, lo que llevó a un rápido crecimiento demográfico y urbano. La ciudad se convirtió en un importante centro industrial, contribuyendo significativamente a la producción de acero de Argentina.</p><p>Hoy en día, San Nicolás continúa siendo un importante centro industrial y portuario, combinando su herencia histórica y religiosa con su papel en la economía moderna de Argentina.</p>',
+                    'lugares-title': 'Lugares Populares',
+                    'lugares-card1-title': 'Santuario de Nuestra Señora del Rosario',
+                    'lugares-card1-content': '<p>El Santuario de Nuestra Señora del Rosario de San Nicolás es el corazón espiritual de la ciudad. Construido en el lugar de las apariciones marianas de 1983, este imponente edificio atrae a millones de peregrinos cada año.</p><p>El santuario, inaugurado en 1989, se eleva a 52 metros de altura y puede albergar hasta 10,000 fieles. Su arquitectura moderna incorpora elementos simbólicos, como las 15 puertas que representan los 15 misterios del rosario.</p><p>En el interior, los visitantes pueden ver la imagen de la Virgen del Rosario, encontrada en la catedral local tras las apariciones. El santuario también cuenta con un museo que exhibe exvotos y otros objetos relacionados con los milagros atribuidos a la Virgen.</p>',
+                    'lugares-card2-title': 'Parque Rafael de Aguiar',
+                    'lugares-card2-content': '<p>El Parque Rafael de Aguiar, nombrado en honor al fundador de la ciudad, es un hermoso espacio verde ubicado a orillas del río Paraná. Con una extensión de más de 70 hectáreas, es el pulmón verde de San Nicolás y un lugar favorito para el esparcimiento de los locales y visitantes.</p><p>El parque cuenta con amplias áreas verdes, senderos para caminatas y ciclismo, áreas de picnic y parrillas. También alberga instalaciones deportivas, incluyendo canchas de fútbol, tenis y básquetbol.</p><p>Una de las características más destacadas del parque es su costanera, que ofrece impresionantes vistas del río Paraná. Los visitantes pueden disfrutar de paseos en bote, pesca recreativa o simplemente relajarse viendo el atardecer sobre el río.</p>',
+                    'lugares-card3-title': 'Teatro Municipal Rafael de Aguiar',
+                    'lugares-card3-content': '<p>El Teatro Municipal Rafael de Aguiar es un ícono cultural de San Nicolás. Inaugurado en 1908, este hermoso edificio de estilo italiano es un testimonio de la rica historia cultural de la ciudad.</p><p>Con capacidad para 500 espectadores, el teatro ha sido cuidadosamente restaurado para preservar su esplendor original. Sus características más notables incluyen su elegante fachada, los frescos del techo y los palcos finamente decorados.</p><p>El teatro alberga una variedad de eventos a lo largo del año, incluyendo obras de teatro, conciertos, danza y otros espectáculos culturales. También es sede del Festival Internacional de Teatro de San Nicolás, que atrae a compañías de teatro de todo el mundo.</p>',
+                    'eventos-title': 'Eventos y Festivales',
+                    'eventos-card1-title': 'Peregrinación Anual',
+                    'eventos-card1-content': '<p>La Peregrinación Anual al Santuario de Nuestra Señora del Rosario es el evento más importante del calendario religioso de San Nicolás. Cada 25 de septiembre, fecha que conmemora la primera aparición de la Virgen en 1983, la ciudad recibe a cientos de miles de peregrinos de todo el país y el extranjero.</p><p>La peregrinación comienza en la madrugada, con fieles caminando desde diversos puntos de la ciudad y alrededores hacia el Santuario. A lo largo del día, se celebran misas continuas y se realizan procesiones con la imagen de la Virgen.</p><p>El evento culmina con una misa multitudinaria en la explanada del Santuario, que suele ser presidida por importantes figuras de la Iglesia Católica. La peregrinación no solo es un acto de fe, sino también una muestra impresionante de devoción popular y un importante evento turístico para la ciudad.</p>',
+                    'eventos-card2-title': 'Festival Internacional de Teatro',
+                    'eventos-card2-content': '<p>El Festival Internacional de Teatro de San Nicolás es uno de los eventos culturales más destacados de la ciudad. Celebrado anualmente desde 1985, este festival transforma a San Nicolás en un epicentro de las artes escénicas durante una semana.</p><p>El festival atrae a compañías de teatro de Argentina y de todo el mundo, ofreciendo una amplia variedad de obras que van desde el teatro clásico hasta producciones experimentales contemporáneas. Las presentaciones se realizan en diversos espacios de la ciudad, incluyendo el Teatro Municipal Rafael de Aguiar, plazas públicas y centros culturales.</p><p>Además de las obras de teatro, el festival incluye talleres, conferencias y encuentros con artistas, brindando una oportunidad única para el intercambio cultural y el desarrollo artístico. Este evento no solo enriquece la vida cultural de San Nicolás, sino que también atrae a numerosos turistas, impulsando la economía local.</p>',
+                    'eventos-card3-title': 'Feria Gastronómica del Paraná',
+                    'eventos-card3-content': '<p>La Feria Gastronómica del Paraná es un evento anual que celebra la rica tradición culinaria de San Nicolás y la región del Paraná. Generalmente realizada en el Parque Rafael de Aguiar, esta feria atrae a miles de visitantes con su deliciosa oferta de platos locales y regionales.</p><p>Los asistentes pueden degustar una amplia variedad de especialidades, incluyendo pescados de río, carnes asadas, empanadas, y dulces típicos. La feria también presenta stands de productores locales que ofrecen quesos, embutidos, vinos y cervezas artesanales.</p><p>Además de la comida, el evento incluye demostraciones de cocina en vivo, concursos culinarios y presentaciones musicales. La Feria Gastronómica del Paraná no solo es una celebración de los sabores locales, sino también una oportunidad para promover la cultura y los productos de la región.</p>',
+                    'mapa-title': 'Mapa de San Nicolás',
+                    'footer-credits': 'Creado por: Duportal Roman, Quiroga Joel, Campelli Joaquin, Benavidez Jeremias'
+                },
+                en: {
+                    'hero-title': 'San Nicolás de los Arroyos',
+                    'hero-subtitle': 'Discover the charm and rich heritage of this Argentine gem',
+                    'btn-historia': 'History',
+                    'btn-lugares': 'Popular Places',
+                    'btn-eventos': 'Events and Festivals',
+                    'btn-mapa': 'Map',
+                    'historia-title': 'History',
+                    'historia-card1-title': 'Foundation and Development',
+                    'historia-card1-content': '<p>San Nicolás de los Arroyos was founded on April 14, 1748, by Rafael de Aguiar. Originally a small rural town, the city experienced significant growth in the 19th century due to its strategic location on the banks of the Paraná River. The port of San Nicolás became an important trade center, facilitating the exchange of agricultural and livestock products.</p><p>In 1852, the city was the scene of a crucial historical event: the signing of the San Nicolás Agreement, which laid the foundations for the national organization of Argentina and the subsequent enactment of the 1853 Constitution.</p>',
+                    'historia-card2-title': 'Marian Apparition',
+                    'historia-card2-content': '<p>On September 25, 1983, the city experienced an event that would transform it forever. Gladys Quiroga de Motta, a local woman, reported having a vision of the Virgin Mary. According to her testimony, the Virgin asked her to look for an image of herself that had been blessed by Pope Leo XIII.</p><p>This image was found in the city\'s cathedral, covered in dust in the bell tower. Since then, San Nicolás has become an important pilgrimage center, attracting millions of faithful each year. The Sanctuary of Our Lady of the Rosary of San Nicolás was built on the site of the apparitions and has become a symbol of faith and devotion in Argentina.</p>',
+                    'historia-card3-title': 'Industrial Development',
+                    'historia-card3-content': '<p>In the mid-20th century, San Nicolás experienced a significant economic transformation with the installation of the SOMISA (Sociedad Mixta Siderurgia Argentina) steel plant in 1947. This plant, now operated by Ternium Argentina, marked the beginning of the city\'s industrial era.</p><p>The steel industry not only boosted San Nicolás\' economic growth but also attracted workers from all over the country, leading to rapid demographic and urban growth. The city became an important industrial center, contributing significantly to Argentina\'s steel production.</p><p>Today, San Nicolás continues to be an important industrial and port center, combining its historical and religious heritage with its role in Argentina\'s modern economy.</p>',
+                    'lugares-title': 'Popular Places',
+                    'lugares-card1-title': 'Sanctuary of Our Lady of the Rosary',
+                    'lugares-card1-content': '<p>The Sanctuary of Our Lady of the Rosary of San Nicolás is the spiritual heart of the city. Built on the site of the 1983 Marian apparitions, this imposing building attracts millions of pilgrims each year.</p><p>The sanctuary, inaugurated in 1989, rises to a height of 52 meters and can accommodate up to 10,000 faithful. Its modern architecture incorporates symbolic elements, such as the 15 doors representing the 15 mysteries of the rosary.</p><p>Inside, visitors can see the image of the Virgin of the Rosary, found in the local cathedral after the apparitions. The sanctuary also has a museum that exhibits ex-votos and other objects related to the miracles attributed to the Virgin.</p>',
+                    'lugares-card2-title': 'Rafael de Aguiar Park',
+                    'lugares-card2-content': '<p>Rafael de Aguiar Park, named after the city\'s founder, is a beautiful green space located on the banks of the Paraná River. With an area of over 70 hectares, it is the green lung of San Nicolás and a favorite place for locals and visitors to relax.</p><p>The park features large green areas, walking and cycling paths, picnic areas, and barbecue facilities. It also houses sports facilities, including soccer, tennis, and basketball courts.</p><p>One of the park\'s most notable features is its waterfront, which offers impressive views of the Paraná River. Visitors can enjoy boat rides, recreational fishing, or simply relax watching the sunset over the river.</p>',
+                    'lugares-card3-title': 'Rafael de Aguiar Municipal Theater',
+                    'lugares-card3-content': '<p>The Rafael de Aguiar Municipal Theater is a cultural icon of San Nicolás. Inaugurated in 1908, this beautiful Italian-style building is a testament to the city\'s rich cultural history.</p><p>With a capacity for 500 spectators, the theater has been carefully restored to preserve its original splendor. Its most notable features include its elegant façade, ceiling frescoes, and finely decorated boxes.</p><p>The theater hosts a variety of events throughout the year, including plays, concerts, dance performances, and other cultural shows. It is also the venue for the San Nicolás International Theater Festival, which attracts theater companies from around the world.</p>',
+                    'eventos-title': 'Events and Festivals',
+                    'eventos-card1-title': 'Annual Pilgrimage',
+                    'eventos-card1-content': '<p>The Annual Pilgrimage to the Sanctuary of Our Lady of the Rosary is the most important event in San Nicolás\' religious calendar. Every September 25th, the date commemorating the first apparition of the Virgin in 1983, the city receives hundreds of thousands of pilgrims from all over the country and abroad.</p><p>The pilgrimage begins at dawn, with faithful walking from various points of the city and surroundings towards the Sanctuary. Throughout the day, continuous masses are celebrated and processions are held with the image of the Virgin.</p><p>The event culminates with a mass gathering on the Sanctuary\'s esplanade, usually presided over by important figures of the Catholic Church. The pilgrimage is not only an act of faith but also an impressive display of popular devotion and an important tourist event for the city.</p>',
+                    'eventos-card2-title': 'International Theater Festival',
+                    'eventos-card2-content': '<p>The San Nicolás International Theater Festival is one of the city\'s most prominent cultural events. Held annually since 1985, this festival transforms San Nicolás into an epicenter of the performing arts for a week.</p><p>The festival attracts theater companies from Argentina and around the world, offering a wide variety of plays ranging from classical theater to contemporary experimental productions. Performances are held in various spaces throughout the city, including the Rafael de Aguiar Municipal Theater, public squares, and cultural centers.</p><p>In addition to the plays, the festival includes workshops, conferences, and meetings with artists, providing a unique opportunity for cultural exchange and artistic development. This event not only enriches the cultural life of San Nicolás but also attracts numerous tourists, boosting the local economy.</p>',
+                    'eventos-card3-title': 'Paraná Gastronomic Fair',
+                    'eventos-card3-content': '<p>The Paraná Gastronomic Fair is an annual event that celebrates the rich culinary tradition of San Nicolás and the Paraná region. Usually held in Rafael de Aguiar Park, this fair attracts thousands of visitors with its delicious offering of local and regional dishes.</p><p>Attendees can taste a wide variety of specialties, including river fish, grilled meats, empanadas, and typical sweets. The fair also features stands from local producers offering cheeses, cured meats, wines, and craft beers.</p><p>In addition to the food, the event includes live cooking demonstrations, culinary contests, and musical performances. The Paraná Gastronomic Fair is not only a celebration of local flavors but also an opportunity to promote the culture and products of the region.</p>',
+                    'mapa-title': 'Map of San Nicolás',
+                    'footer-credits': 'Created by: Duportal Roman, Quiroga Joel, Campelli Joaquin, Benavidez Jeremias'
+                }
+            };
+
+            Object.keys(translations[lang]).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    if (element.tagName === 'DIV') {
+                        element.innerHTML = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            document.documentElement.lang = lang;
+        });
+
+        // Mostrar la sección de Historia por defecto
+        showSlider('historia');
+    </script>
+</body>
+</html>
